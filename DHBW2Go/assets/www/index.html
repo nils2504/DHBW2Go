@@ -1,1 +1,25 @@
-<!DOCTYPE HTML> <html> <head> <title>PhoneGap</title> <script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script> </head> <body> <h1>Hello PhoneGap</h1> </body> </html>
+<!DOCTYPE HTML> 
+<html> 
+<head> 
+<title>DHBW2Go</title> 
+<script type="text/javascript" charset="utf-8" src="cordova-1.5.0.js"></script> 
+<link rel="stylesheet" href="style.css" />
+</head> 
+<body>
+<div id="wrapper">
+<script>
+var a = document.getElementById('wrapper').offsetwidth;
+var b = a *0.8; //80% soll der Wrapper haben
+</script>
+<img id="logo" src="images/dhbwlogo.png" alt="DHBW Logo"/>
+<article id="loginForm">
+<form action="MetroNav.html">
+  <input class="login" name="benutzername" type="text" size="30" maxlength="40" value="benutzername" onfocus="if(this.value == this.defaultValue) this.value = '';" onblur="if(!this.value) this.value = this.defaultValue;"><br>
+  <input class="login" name="passwort" type="password" size="30" maxlength="40" value="passwort" onfocus="if(this.value == this.defaultValue) this.value = '';" onblur="if(!this.value) this.value = this.defaultValue;"><br>
+  <br>
+  <input id="submit" type="submit" value="sign in"><br><br></form>
+  <div class="central"><a id="register" href="register.html">Jetzt registrieren!</a></div>
+</article>
+</div>
+</body> 
+</html>
