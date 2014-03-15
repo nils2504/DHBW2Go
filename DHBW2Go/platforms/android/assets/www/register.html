@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    	
+    	<script type="text/javascript" src="js/cordova.js"></script>
+    	<script type="text/javascript" src="js/phonegap.js"></script>
+    	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    	<script src="js/parse-1.1.2.min.js"></script>
+    	<script src="js/myApp.js"></script>
+
+        <title>DHBW2Go</title>
+    </head>
+
+    
+    <body>
+	<div class="container">		
+		<p class="logoP">
+   			<img src="img/dhbwlogo.png" class="logo" title="DHBWLogo">
+   		</p>
+		
+		<form id="registerForm">
+
+			<label for="user">Benutzername:</label>
+			<input type="text" id="user" class="input-xlarge" placeholder="Benutzername">
+
+			<label for="password">Passwort</label>
+			<input type="password" id="password" class="input-xlarge" placeholder="Passwort">
+			
+			<label for="mail">E-Mail</label>
+			<input type="text" id="mail" class="input-xlarge" placeholder="E-Mail-Adresse">
+			
+			<label for="kurs">Kurs</label>
+			<select name="x" id="kurs"></select>
+            <script>
+			var select = document.getElementById("kurs");
+			var option = document.createElement("option");
+      		option.text = "------";
+			option.value = "null";
+			select.appendChild(option);
+			var url = "http://www.dhbw-loerrach.de/fileadmin/pubdocs/cal-app/calendar_calendars.xml";
+			var req = new XMLHttpRequest();
+			req.open('GET', 'calendar_calendars.xml', true);
+			req.onreadystatechange = function() {
+				
+  				if (req.readyState === 4) {
+    			var doc = req.responseXML;
+    			var entries = doc.getElementsByTagName('Calendar');
+    			for (var i = 0, l = entries.length; i < l; i++) {
+      				var entry = entries[i];
+      				var naEl = entry.getElementsByTagName('DisplayName')[0];
+      				var urlEl = entry.getElementsByTagName('iCalUrl')[0];					
+					var option = document.createElement("option");
+      				option.text = naEl.textContent;
+					option.value = urlEl.textContent;
+					select.appendChild(option);
+    				}
+  				}
+				};
+				req.send(null);
+			
+				</script>
+			
+			<input type="submit" class="btn btn-block btn-primary" value="Registrieren" id="loginBtn">
+
+		</form>
+	</div>
+	
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+    
+    </body>
+</html>
