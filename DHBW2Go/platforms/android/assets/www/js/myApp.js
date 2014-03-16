@@ -5,14 +5,8 @@ var currentUser = Parse.User.current();
 var localdb = window.openDatabase("dhbw", "1.0", "DHBW2Go", 1000000);
 var userObjekt;
 localdb.transaction(makeQueryUser,errorCB);
-
-document.addEventListener("offline", onOffline, false);
-document.addEventListener("online", onOnline, false);
 document.addEventListener("deviceready", onDeviceReady, false);
 
-
-function onDeviceReady() {
-}
 
 
 function rememberMe(){

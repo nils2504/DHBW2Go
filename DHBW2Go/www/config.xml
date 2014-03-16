@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns = "http://www.w3.org/ns/widgets"
-
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.phonegap.example"
+        id          = "com.tdnr.dhbw2go"
         version     = "1.0.0"
         versionCode = "10" >
 
@@ -10,7 +9,7 @@
 
         <preference name="phonegap-version" value="3.3.0" />
 
-        <name>Config.xml</name>
+        <name>DHBW2Go /www</name>
 
         <description>
         Phonegap doc.
@@ -20,6 +19,13 @@
         Nils Rhode
         </author>
         
+        <content src="index.html" />
+        <access origin="*" />
+        <preference name="Fullscreen" value="true" />
+        <preference name="WebViewBounce" value="true" />
+		<preference name="Orientation" value="default" />
+
+		
         <gap:plugin name="org.apache.cordova.device" />
         <gap:plugin name="org.apache.cordova.file" />
         <gap:plugin name="org.apache.cordova.network-information" />
@@ -27,3 +33,4 @@
         <gap:plugin name="io.github.pwlin.cordova.plugins.fileopener" />
 
     </widget>
+
