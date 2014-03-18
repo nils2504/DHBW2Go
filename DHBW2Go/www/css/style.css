@@ -28,22 +28,30 @@ body {
 .logo{width:250px}
 .logoP{text-align:center;margin-top:50px; margin-bottom:50px;}
 
-.line div{width:45%; padding:10px}
+.line div{width:45%; padding:5px}
 .metroImg{}
 .line .left{float:left;}
-.line .right{float:right}
+.line .right{float:left;}
 
-#newsContent .event .headLine h3{
-	float:right;
+#newsContent .event .headLine h4{
+    float: right;
+    padding-right: 9px;
+	font-size:14px;
 }
 #newsContent .event .headLine h3:first-child{
 	float:left;
+	padding-left: 6px;
+	font-size:18px;
+	line-height:20px !important;
 }
 #newsContent .event .body{
 	clear:left;
+	padding-bottom: 15px;
+    padding-left: 6px;
+font-size:12px;
 }
 .gray{
-	background-color:silver;
+	background-color:#e9ecee;
 }
 .newsID{
 display:none;
@@ -53,8 +61,42 @@ display:none;
 	padding-top:15px;
 	padding-bottom:15px;
 	text-align:center;
-	background-color:red;
+	background-color:#df7575;
 	color:White;
+}
+#mensaH{
+	font-size:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	text-align:center;
+	background-color:#df7575;
+	color:White;
+}
+#calH{
+	font-size:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	text-align:center;
+	background-color:#df7575;
+	color:White;
+}
+#showDay{
+	font-size:16px;
+	padding-top:0px;
+	padding-bottom:5px;
+	padding-top:5px;
+	text-align:center;
+	background-color:#e9ecee;
+	color:Black;
+}
+#showMonth{
+	font-size:16px;
+	padding-top:0px;
+	padding-bottom:5px;
+	padding-top:5px;
+	text-align:center;
+	background-color:#e9ecee;
+	color:Black;
 }
 #eventHBut{
 	display:none;
@@ -67,3 +109,48 @@ display:none;
 	color:white;
 	padding-right:10px;
 }
+
+
+/** MENSA **/
+
+#inhalt h5{
+	font-size:18px;
+}
+
+#inhalt .headline-menu{
+	float:left;
+	padding-left: 6px;
+}
+
+#inhalt .price-menu{
+	float: right;
+	padding-right: 5px;
+	padding-top: 9px;
+}
+
+#inhalt .description-menu{
+	clear:left;
+	padding-bottom: 10px;
+    padding-left: 6px;
+	font-size: 12px;
+}
+
+#mensa-footer{
+	font-size:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	text-align:center;
+	background-color:#df7575;
+	color:White;
+	height: 41px;
+}
+#cal-footer{
+	font-size:20px;
+	padding-top:15px;
+	padding-bottom:15px;
+	text-align:center;
+	background-color:#df7575;
+	color:White;
+	height: 41px;
+}
+

@@ -5,16 +5,15 @@
         <meta name="format-detection" content="telephone=no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="css/style.css" />
     	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     	
     	<script type="text/javascript" src="js/cordova.js"></script>
-    	<script type="text/javascript" src="js/phonegap.js"></script>
     	
     	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     	<script src="js/parse-1.1.2.min.js"></script>
-    	<script src="js/myApp.js"></script>
+    	<script src="js/index.js"></script>
     	<script src="js/csv.js"></script>
     	<script src="js/jquery.jsonp-2.3.0.min.js"></script>
         <title>DHBW2Go</title>
@@ -40,44 +39,65 @@
 			</div>
 		</div>
 	</div>
-    <img src="img/logo.png" title="DHBWLogo">
 	<div class="container">	
-	
+		<div id="mensaH">Mensa</div>
+        <div id="showDay"></div>
 		<div id="inhalt">
-        	<h5 id="headM0"></h5>
-        	<p id="contentM0"></p>
-        	<p id="priceM0"></p></div>
-        	<h5 id="headM1"></h5>
-        	<p id="contentM1"></p>
-        	<p id="priceM1"></p></div>
-        	<h5 id="headM2"></h5>
-        	<p id="contentM2"></p>
-        	<p id="priceM2"></p></div>
-        	<h5 id="headM3"></h5>
-        	<p id="contentM3"></p>
-        	<p id="priceM3"></p></div>
-        	<h5 id="headM4"></h5>
-        	<p id="contentM4"></p>
-        	<p id="priceM4"></p></div>
-        	<h5 id="headM5"></h5>
-        	<p id="contentM5"></p>
-        	<p id="priceM5"></p></div>
-        	<h5 id="headM6"></h5>
-        	<p id="contentM6"></p>
-        	<p id="priceM6"></p></div>
-        	<h5 id="headM7"></h5>
-        	<p id="contentM7"></p>
-        	<p id="priceM7"></p></div>
-        	<h5 id="headM8"></h5>
-        	<p id="contentM8"></p>
-        	<p id="priceM8"></p></div>
+       	 <div>
+        	<h5 class="headline-menu" id="headM0"></h5>
+        	<p class="price-menu"id="priceM0"></p>
+        	<div class="description-menu"id="contentM0"></div>
+       	 </div>
+       	 <div class="gray">
+        	<h5 class="headline-menu" id="headM1"></h5>
+        	<p class="price-menu"id="priceM1"></p>
+        	<div class="description-menu"id="contentM1"></div>
+         </div>
+       	 <div>
+        	<h5 class="headline-menu" id="headM2"></h5>
+        	<p class="price-menu"id="priceM2"></p>
+        	<div class="description-menu"id="contentM2"></div>
+         </div>
+       	 <div class="gray">
+        	<h5 class="headline-menu" id="headM3"></h5>
+        	<p class="price-menu"id="priceM3"></p>
+        	<div class="description-menu"id="contentM3"></div>
+         </div>
+       	 <div>
+        	<h5 class="headline-menu" id="headM4"></h5>
+        	<p class="price-menu"id="priceM4"></p>
+        	<div class="description-menu"id="contentM4"></div>
+         </div>
+       	 <div class="gray">
+        	<h5 class="headline-menu" id="headM5"></h5>
+        	<p class="price-menu"id="priceM5"></p>
+        	<div class="description-menu"id="contentM5"></div>
+         </div>
+       	 <div>
+        	<h5 class="headline-menu" id="headM6"></h5>
+        	<p class="price-menu"id="priceM6"></p>
+        	<div class="description-menu"id="contentM6"></div>
+         </div>
+       	 <div class="gray">
+        	<h5 class="headline-menu" id="headM7"></h5>
+        	<p class="price-menu"id="priceM7"></p>
+        	<div class="description-menu"id="contentM7"></div>
+         </div>
+       	 <div>
+        	<h5 class="headline-menu" id="headM8"></h5>
+        	<p class="price-menu"id="priceM8"></p>
+        	<div class="description-menu"id="contentM8"></div>
+         </div>
+        </div>
+		<div id="mensa-footer">
 		<div id="mensaNav" class="span12">
-			<input id="T0" type="button" onclick="showMensa(this.id);" class="btn btn-info"></input>
-			<input id="T1" type="button" onclick="showMensa(this.id);" class="btn btn-info"></input>
-			<input id="T2" type="button" onclick="showMensa(this.id);" class="btn btn-info"></input>
-			<input id="T3" type="button" onclick="showMensa(this.id);" class="btn btn-info"></input>
-			<input id="T4" type="button" onclick="showMensa(this.id);" class="btn btn-info"></input>
+			<input id="T0" type="button" onclick="showMensa(this.id);" class="btn sample btn-lg btn-sample"></input>
+			<input id="T1" type="button" onclick="showMensa(this.id);" class="btn sample btn-lg btn-sample"></input>
+			<input id="T2" type="button" onclick="showMensa(this.id);" class="btn sample btn-lg btn-sample"></input>
+			<input id="T3" type="button" onclick="showMensa(this.id);" class="btn sample btn-lg btn-sample"></input>
+			<input id="T4" type="button" onclick="showMensa(this.id);" class="btn sample btn-lg btn-sample"></input>
 		</div>	
+		</div>
 		<script>
 		function KalenderWoche()
 		{
@@ -102,6 +122,7 @@
 		var day3;	
 		var day4;	
 		var day5;	
+		var salat;
 		   $.ajax({
                 type: 'GET',
                 url: url,
@@ -124,10 +145,9 @@
 				var gemPreis = csvAsArray[14];					
 				var beilage = csvAsArray[15];			
 				var beilagePreis = csvAsArray[16];				
-				var salat = csvAsArray[17];			
+				salat = csvAsArray[17];			
 				var geni = csvAsArray[18];			
-				var geniPreis = csvAsArray[19];					
-				
+				var geniPreis = csvAsArray[19];		
 				
 								
 				day1 = new Array(wdays[1],days[1], suppe[1], suppePreis[2],trad[1], tradPreis[2], wok[1], wokPreis[2], veg[1], vegPreis[2],
@@ -160,19 +180,18 @@
 				{
 					var getButton = document.getElementById(t+i);
 					var aktDay = days[i];
-					if(i == dat){getButton.setAttribute("class", "btn btn-primary")}											
+					if(i == dat){getButton.setAttribute("class", "btn sample btn-lg active btn-sample")}											
 					getButton.value = aktDay[0]+ ',\n'+ aktDay[1];
 				}
 				
 				menuToDay(dat);
-				},
-				jsonp: 'jsonp'
+			},jsonp: 'jsonp'
 				});	
 				
 				
 				function menuToDay(x){					
 					var days = new Array(day1,day2,day3,day4,day5);
-					var headers = new Array("Suppe: ","Die Traditionellen: ","Wok, Grill, Pasta: ","Die Vegetarischen: ","Gem&uuml;se & Co: ","Beilagen: ","Salateria: ","Genie&szlig;er-Cup: ");
+					var headers = new Array("Suppe ","Die Traditionellen ","Wok, Grill, Pasta ","Die Vegetarischen ","Gem&uuml;se & Co ","Beilagen ","Salateria ","Genie&szlig;er-Cup ");
 					
 					var inhalt = 'inhalt';
 					var head = 'head';
@@ -181,9 +200,11 @@
 					var t = 'T';
 					var a = 2;
 					var b = a+1;
-					
-					
 					var aktDay = days[x];
+					var res = salat[1];
+					var tres = res.split(" 100",1);
+					var pres = "100gr für je "+res.split(" EUR").pop()+"€";
+					document.getElementById('showDay').innerHTML = aktDay[0];
 					for( var j = 0; j < 8; j++)
 					{
 							
@@ -191,10 +212,11 @@
 							var getContent = document.getElementById(content+'M'+j);
 							var getPrice = document.getElementById(price+'M'+j);
 							getHead.innerHTML = headers[j];
-							if(getHead.innerHTML == "Salateria: ")
+							if(getHead.innerHTML == "Salateria ")
 							{
-								getContent.innerHTML = salat;
-								getPrice.innerHTML = "0,70€";
+								
+								getContent.innerHTML = tres;
+								getPrice.innerHTML = pres;
 								
 							}
 							else{
@@ -213,12 +235,12 @@
 					var dat = x.substring(1,2);
 	 				for(var i = 0; i < 5;i++)
 						{				
-							var menu = document.getElementById('T'+i);
-							menu.setAttribute("class", "btn btn-info");				
+							var menu = document.getElementById('T'+i);	
+							menu.setAttribute("class", "btn sample btn-lg btn-sample");		
 						}
 						
 						var menu = document.getElementById(x);
-						menu.setAttribute("class", "btn btn-primary");
+						menu.setAttribute("class", "btn sample btn-lg btn-sample active ");
 						menuToDay(dat);
 		
 					

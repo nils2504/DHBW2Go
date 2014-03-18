@@ -587,6 +587,7 @@ function parseGroup(lines, index, owner, timezones) {
 	}
 	var group = {};
 	var name = lines[index].substr(6);
+	
 	addEntry(owner, name.toLowerCase(), group);
 	index++;
 	while (index < lines.length && lines[index].indexOf('END:') != 0) {
