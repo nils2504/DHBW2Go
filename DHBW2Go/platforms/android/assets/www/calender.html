@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="js/jquery.icalendar.js"></script>
+<script src="js/parse-1.1.2.min.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript" src="js/cordova.js"></script>
+<title>DHBW2Go</title>
+</head>
+<body onload="downloadIcs()">
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container"> <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a> <a class="brand" href="#">DHBW2Go</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="active"><a href="metroNav.html">Home</a></li>
+          <li><a href="profil.html">Profil</a></li>
+          <li><a href="studenplan.html">Stundenplan</a></li>
+          <li><a href="mensa.html">Mensa</a></li>
+          <li><a href="mensa.html">News</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- divout dient zum Einlesen des Kalenders - wird aber nur als Platzhalter verwendet, daher auch nicht angezeigt -->
+<div id="divout" style="display:none"></div>
+
+<div id="calH">Kalendar</div>
+<div id="showMonth"></div>
+<div id="CalConent">
+  <div id="Jan" class="CalConents"></div>
+  <div id="Feb" class="CalConents"></div>
+  <div id="Mar" class="CalConents"></div>
+  <div id="Apr" class="CalConents"></div>
+  <div id="May" class="CalConents"></div>
+  <div id="June" class="CalConents"></div>
+  <div id="July" class="CalConents"></div>
+  <div id="Aug" class="CalConents"></div>
+  <div id="Sept" class="CalConents"></div>
+  <div id="Oct" class="CalConents"></div>
+  <div id="Nov" class="CalConents"></div>
+  <div id="Dec" class="CalConents"></div>
+</div>
+<div id="cal-footer">
+<div id="calNav" class="span12">
+			<input class="chooseMonth" id="M0" type="button" onclick="showCal('Jan','0');" class="btn sample btn-lg btn-sample" value="Januar"></input>
+			<input class="chooseMonth" id="M1" type="button" onclick="showCal('Feb','1');" class="btn sample btn-lg btn-sample" value="Februar"></input>
+			<input class="chooseMonth" id="M2" type="button" onclick="showCal('Mar','2');" class="btn sample btn-lg btn-sample" value="M&auml;rz"></input>
+			<input class="chooseMonth" id="M3" type="button" onclick="showCal('Apr','3');" class="btn sample btn-lg btn-sample" value="April"></input>
+			<input class="chooseMonth" id="M4" type="button" onclick="showCal('May','4');" class="btn sample btn-lg btn-sample" value="Mai"></input>
+			<input class="chooseMonth" id="M5" type="button" onclick="showCal('June','5');" class="btn sample btn-lg btn-sample" value="Juni"></input>
+			<input class="chooseMonth" id="M6" type="button" onclick="showCal('July','6');" class="btn sample btn-lg btn-sample" value="Juli"></input>
+			<input class="chooseMonth" id="M7" type="button" onclick="showCal('Aug','7');" class="btn sample btn-lg btn-sample" value="August"></input>
+			<input class="chooseMonth" id="M8" type="button" onclick="showCal('Sept','8');" class="btn sample btn-lg btn-sample" value="September"></input>
+			<input class="chooseMonth" id="M9" type="button" onclick="showCal('Oct','9');" class="btn sample btn-lg btn-sample" value="Oktober"></input>
+			<input class="chooseMonth" id="M10" type="button" onclick="showCal('Nov','10');" class="btn sample btn-lg btn-sample" value="November"></input>
+			<input class="chooseMonth" id="M11" type="button" onclick="showCal('Dec','11');" class="btn sample btn-lg btn-sample" value="Dezember"></input>
+</div>	
+</div>
+
+<script>
+	var ical;
+	var tag = "";
+	var tt = "";
+	var beschr;
+	var newEv;
+	var concatenate = "";
+	var monat = "";
+	var zeit ="";
+	var ort = "";
+	var tag1 = "";
+	var tag2 = "";
+	var monthAbk = new Array("Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec");
+	var month = new Array("Januar","Februar","M&auml;rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
+	$("#divout").load('calendar.ics', function(msg){
+		var myArray = msg.split("\n");
+		
+		<!-- Kalendar in ical Objekt -->
+		var content = document.getElementById('divout').innerHTML;
+		ical = $.icalendar.parse(content);
+		<!-- Inhalt leeren -->
+		document.getElementById('divout').innerHTML = "";
+		<!-- Für jedes ical Objekt -->
+		$.each( ical, function( key, value ) {
+			<!--- wenn du ein event bist -->
+			if(key == "vevent"){
+				var events = value;
+				<!-- für jedes event -->
+				$.each( events, function( key, value ) {					
+					var ev = value;
+					<!-- für jedes Event ein eigener DIV-Container -->
+					newEv = document.createElement("DIV");
+					var firstT = 0;
+					$.each(ev, function( key, value ) {
+						<!-- wenn Schlüssel = Ort und auch ein Wert vorhanden -->
+						if(key == "location" && value != ""){
+							ort = document.createElement("P");
+							ort.setAttribute("class","calOrt");
+							ort.innerHTML = "Ort: "+value;	
+						}
+						else{ort = "";}
+						if(key == "summary"){
+							beschr = document.createElement("H5");
+							beschr.setAttribute("class","calBeschr");
+							beschr.innerHTML = value;
+						}						
+						if( key == "dtstart" || key == "dtend"){
+						var t = value;						
+							$.each( t, function( key, value ) {													
+							if(key == "_value"){			
+								var val = String(value);
+								var valu = val.split(" ");
+								monat = valu[1];
+								if(firstT == 0){
+								<!-- Wochentag festlegen -->
+								var wdays = new Array("Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
+								var wdaysAbk = new Array("Mon","Tue","Wed","Thu","Fri","Sat");
+								for(var i = 0; i<wdays.length; i++)
+								{
+									if(wdaysAbk[i] == valu[0]) {
+										
+										concatenate = concatenate + " " + wdays[i];
+									}
+								}
+								
+								<!-- Datum festlegen -->
+								concatenate = concatenate +", den "+valu[2]+".";
+								
+								<!-- zum Monat hinzufügen -->								
+								
+								
+								for(var j = 0; j<month.length; j++)								
+								{
+									if(monthAbk[j] == valu[1]) {
+										concatenate = concatenate + " " + month[j];
+									}
+								}
+								
+								<!-- Jahr festlegen -->
+								concatenate = concatenate + " " + valu[3];		
+								<!-- An H4 Element übergeben -->			
+								tag = document.createElement("H4");								
+								tag.innerHTML = concatenate;
+								
+								<!-- Uhrzeit von festlegen -->
+								tt = "Uhrzeit: "+valu[4];
+								firstT = 1;								
+								}
+								else if(firstT == 1){
+									tt = tt + " bis " +valu[4];
+									firstT = 0;
+								}
+							}
+									
+							zeit = document.createElement("P");
+							zeit.innerHTML = tt;
+							
+						});
+					}
+					
+					});
+					tag1 = tag.innerHTML;
+					if(tag1 != tag2){
+					newEv.appendChild(tag);
+					tag2 = tag1;
+					}
+					newEv.appendChild(beschr);
+					newEv.appendChild(zeit);
+					if(ort != ""){
+					newEv.appendChild(ort);
+					}
+					document.getElementById(monat).appendChild(newEv);
+					concatenate = "";
+					
+					
+					
+				});
+				
+			}
+		});
+	});
+	
+	function MonatText(Zahl) {
+	return monthAbk[Zahl];
+	}
+	var MonatAktuell = new Date().getMonth();
+	
+	showCal(MonatText(MonatAktuell));
+	document.getElementById('showMonth').innerHTML = month[MonatAktuell];
+	var cm = document.getElementsByClassName('chooseMonth');
+	setTimeout(showBut,"1000");
+	function showBut(){
+	for(var k = 0; k<cm.length; k++){
+		if(!document.getElementById(MonatText(k)).hasChildNodes()){
+			cm[k].style.display = "none";
+		}
+	}
+	}
+	
+	function showCal(x,y){
+		var d = document.getElementsByClassName('CalConents');
+		for(var j = 0; j < d.length; j++){
+			d[j].style.display = "none";	
+		}
+		document.getElementById(x).style.display = "block";
+		document.getElementById('showMonth').innerHTML = month[y];
+	}
+		  /*
+		  var startDate = new Date("September 24, 2014 13:00:00");
+		  var endDate = new Date("September 24, 2014 14:30:00");
+		  var title = "My nice event";
+		  var location = "";
+		  var notes = "Some notes about this event.";
+		  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
+		  var error = function(message) { alert("Error: " + message); };
+		
+		  window.plugins.calendar.createEvent(title,"",notes,startDate,endDate,success,error);
+		*/
+		</script> 
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>
