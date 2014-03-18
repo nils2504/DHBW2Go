@@ -92,7 +92,6 @@ $(document).ready(function() {
 		stuv = true;
 		}
 		var newUser = new UserObj();
-		alert(newUser);
 		newUser.set("username", user);
 		newUser.set("password", password);
 		newUser.set("email", email);
@@ -448,7 +447,6 @@ if(userObjekt[6] == 1){
 }
 }
 function downloadIcs(){
-alert("GO");
 var fileTransfer = new FileTransfer();
 alert("FileTransfer l&auml;uft");
 var uri = encodeURI("https://webmail.dhbw-loerrach.de/owa/calendar/kal-wse11b@dhbw-loerrach.de/Kalender/calendar.ics");
